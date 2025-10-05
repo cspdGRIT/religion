@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine India - Hindu Deities & Sacred Places Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff9933 0%, #ff6600 100%);
+            --sacred-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --divine-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --chai-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            --spiritual-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            
+            --primary-color: #ff6600;
+            --sacred-color: #667eea;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+            
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-xl);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border: none;
+            border-radius: var(--border-radius-xl);
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chai-btn {
+            background: var(--chai-gradient);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .chai-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, rgba(255,153,51,0.9), rgba(255,102,0,0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><text x="50%" y="50%" text-anchor="middle" fill="%23fff" opacity="0.05" font-size="120" font-family="serif">ॐ</text></svg>');
+            background-size: cover;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .chai-corner {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--chai-gradient);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .chai-corner:hover {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        /* Search Filters */
+        .filters-section {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .filter-input {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius-md);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Deities Grid */
+        .deities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .deity-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .deity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .deity-icon {
+            background: var(--primary-gradient);
+            color: white;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .deity-content {
+            padding: 1.5rem;
+        }
+
+        .deity-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .deity-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .deity-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .deity-symbols {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .symbol-tag {
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .chart-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bar-label {
+            min-width: 150px;
+            font-weight: 600;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 30px;
+            background: #e2e8f0;
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.5rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: width 1s ease;
+        }
+
+        /* Facts Section */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-left: 4px solid var(--primary-color);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .fact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .fact-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .fact-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            margin: 2rem auto;
+            border-radius: var(--border-radius-lg);
+            max-width: 500px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: var(--chai-gradient);
+            color: white;
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .chai-widget {
+            text-align: center;
+        }
+
+        .chai-amounts {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .chai-amount {
+            padding: 0.875rem 1.5rem;
+            border: 2px solid #ff9a9e;
+            border-radius: var(--border-radius-xl);
+            background: white;
+            color: #ff9a9e;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .chai-amount:hover,
+        .chai-amount.selected {
+            background: var(--chai-gradient);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .chai-pay-btn {
+            background: var(--chai-gradient);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border: none;
+            border-radius: var(--border-radius-xl);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .chai-pay-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .payment-info {
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+            border: 1px solid #f59e0b;
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .payment-info p {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Floating Button */
+        .floating-chai {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            background: var(--chai-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .floating-chai:hover {
+            transform: scale(1.15) translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .deities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .om-symbol {
+            font-size: 1.5rem;
+            margin-left: 0.5rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: var(--border-radius-xl);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-om"></i>
+                    <span>Divine India</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="#deities" class="nav-link">Hindu Deities</a>
+                    <a href="#statistics" class="nav-link">Statistics</a>
+                    <a href="#facts" class="nav-link">Interesting Facts</a>
+                    <button class="chai-btn" onclick="openChaiModal()">
+                        <i class="fas fa-mug-hot"></i> ChaiCheers
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Explore Divine India <span class="om-symbol">ॐ</span></h1>
+            <p>Discover Hindu deities, sacred places, and spiritual statistics across India</p>
+            <button class="btn chai-btn" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                <i class="fas fa-search"></i> Start Exploring
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <!-- Tab Navigation -->
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('deities')">
+                    <i class="fas fa-hands-praying"></i> Hindu Deities
+                </button>
+                <button class="tab-btn" onclick="switchTab('statistics')">
+                    <i class="fas fa-chart-pie"></i> Religious Places Statistics
+                </button>
+                <button class="tab-btn" onclick="switchTab('facts')">
+                    <i class="fas fa-lightbulb"></i> Interesting Facts
+                </button>
+            </div>
+
+            <!-- Deities Tab -->
+            <div id="deities-tab" class="tab-content active">
+                <!-- Search Filters -->
+                <div class="filters-section">
+                    <div class="chai-corner" onclick="openChaiModal()">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <h3 style="font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 1rem;">
+                        <i class="fas fa-filter"></i> Search Hindu Deities
+                    </h3>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Search by Name</label>
+                            <input type="text" class="filter-input" id="deitySearch" placeholder="e.g., Shiva, Vishnu, Lakshmi..." onkeyup="filterDeities()">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Category</label>
+                            <select class="filter-input" id="deityCategory" onchange="filterDeities()">
+                                <option value="">All Categories</option>
+                                <option value="Trimurti">Trimurti (Trinity)</option>
+                                <option value="Goddess">Goddesses</option>
+                                <option value="Avatar">Avatars</option>
+                                <option value="Other">Other Deities</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Aspect</label>
+                            <select class="filter-input" id="deityAspect" onchange="filterDeities()">
+                                <option value="">All Aspects</option>
+                                <option value="Creator">Creator</option>
+                                <option value="Preserver">Preserver</option>
+                                <option value="Destroyer">Destroyer</option>
+                                <option value="Wisdom">Wisdom</option>
+                                <option value="Prosperity">Prosperity</option>
+                                <option value="Strength">Strength</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deities Grid -->
+                <div class="deities-grid" id="deitiesGrid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Statistics Tab -->
+            <div id="statistics-tab" class="tab-content">
+                <!-- Overall Stats -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-database"></i> Religious Places in India
+                        </h2>
+                        <button class="chai-btn" onclick="openChaiModal()">
+                            <i class="fas fa-mug-hot"></i> Support
+                        </button>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="chai-corner" onclick="openChaiModal()">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                            <div class="stat-number" id="totalTemples">2.3M+</div>
+                            <div class="stat-label">Hindu Temples</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="chai-corner" onclick="openChaiModal()">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                            <div class="stat-number">300K+</div>
+                            <div class="stat-label">Mosques</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="chai-corner" onclick="openChaiModal()">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                            <div class="stat-number">60K+</div>
+                            <div class="stat-label">Churches</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="chai-corner" onclick="openChaiModal()">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                            <div class="stat-number">25K+</div>
+                            <div class="stat-label">Gurudwaras</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regional Distribution -->
+                <div class="chart-container">
+                    <div class="chai-corner" onclick="openChaiModal()">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <h3 class="chart-title">Hindu Temples by Region</h3>
+                    <div class="bar-chart" id="regionalChart">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- State-wise Distribution -->
+                <div class="chart-container">
+                    <div class="chai-corner" onclick="openChaiModal()">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <h3 class="chart-title">Top States by Number of Temples</h3>
+                    <div class="bar-chart" id="stateChart">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Religion-wise Distribution -->
+                <div class="chart-container">
+                    <div class="chai-corner" onclick="openChaiModal()">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <h3 class="chart-title">Religious Places by Faith</h3>
+                    <div class="bar-chart" id="religionChart">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Facts Tab -->
+            <div id="facts-tab" class="tab-content">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-star"></i> Fascinating Facts About Hindu Temples
+                        </h2>
+                        <button class="chai-btn" onclick="openChaiModal()">
+                            <i class="fas fa-mug-hot"></i> Support
+                        </button>
+                    </div>
+                    
+                    <div class="facts-grid" id="factsGrid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chai Modal -->
+    <div class="modal" id="chaiModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-mug-hot"></i> Support Divine India</h3>
+                <button class="close-btn" onclick="closeModal('chaiModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="chai-widget">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <i class="fas fa-mug-hot" style="font-size: 4rem; background: var(--chai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                        <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; margin-top: 1rem;">This educational platform about Indian spirituality is free! Support to keep it running and add more content.</p>
+                    </div>
+                    <div class="chai-amounts">
+                        <div class="chai-amount" onclick="selectChaiAmount(25, this)">₹25</div>
+                        <div class="chai-amount selected" onclick="selectChaiAmount(50, this)">₹50</div>
+                        <div class="chai-amount" onclick="selectChaiAmount(100, this)">₹100</div>
+                        <div class="chai-amount" onclick="selectChaiAmount(200, this)">₹200</div>
+                    </div>
+                    <div class="payment-info">
+                        <p><strong><i class="fas fa-mobile-alt"></i> Developer UPI:</strong> 8341346818@ybl</p>
+                        <small style="color: var(--text-muted);">Your support helps maintain this spiritual knowledge platform!</small>
+                    </div>
+                    <button class="chai-pay-btn" onclick="processChaiPayment()">
+                        <i class="fas fa-mug-hot"></i> ChaiCheers ₹<span id="selectedChaiAmount">50</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chai Button -->
+    <button class="floating-chai" onclick="openChaiModal()">
+        <i class="fas fa-mug-hot"></i>
+    </button>
+
+    <script>
+        // Hindu Deities Data
+        const hinduDeities = [
+            {
+                name: "Brahma",
+                title: "The Creator",
+                category: "Trimurti",
+                aspect: "Creator",
+                icon: "🪷",
+                description: "The creator of the universe and all living beings. Part of the Hindu Trinity (Trimurti), Brahma is depicted with four heads representing the four Vedas.",
+                symbols: ["Four Heads", "Vedas", "Lotus", "Swan"]
+            },
+            {
+                name: "Vishnu",
+                title: "The Preserver",
+                category: "Trimurti",
+                aspect: "Preserver",
+                icon: "🦅",
+                description: "The preserver and protector of the universe. Vishnu maintains cosmic order and has taken numerous avatars to restore dharma on Earth.",
+                symbols: ["Chakra", "Conch", "Lotus", "Garuda"]
+            },
+            {
+                name: "Shiva",
+                title: "The Destroyer",
+                category: "Trimurti",
+                aspect: "Destroyer",
+                icon: "🔱",
+                description: "The transformer and destroyer of evil. Shiva is the supreme being who creates, protects and transforms the universe, depicted with a third eye and crescent moon.",
+                symbols: ["Trident", "Third Eye", "Snake", "Damaru"]
+            },
+            {
+                name: "Lakshmi",
+                title: "Goddess of Wealth",
+                category: "Goddess",
+                aspect: "Prosperity",
+                icon: "🪔",
+                description: "The goddess of wealth, fortune, prosperity, and beauty. Lakshmi is the consort of Vishnu and is worshipped during Diwali for blessings of abundance.",
+                symbols: ["Lotus", "Gold Coins", "Owl", "Elephants"]
+            },
+            {
+                name: "Saraswati",
+                title: "Goddess of Knowledge",
+                category: "Goddess",
+                aspect: "Wisdom",
+                icon: "📚",
+                description: "The goddess of knowledge, music, arts, and wisdom. Saraswati is depicted with a veena and is worshipped by students and artists.",
+                symbols: ["Veena", "Books", "Swan", "White Lotus"]
+            },
+            {
+                name: "Durga",
+                title: "Goddess of Power",
+                category: "Goddess",
+                aspect: "Strength",
+                icon: "🦁",
+                description: "The warrior goddess and embodiment of divine feminine power. Durga fought the buffalo demon Mahishasura and is celebrated during Navratri.",
+                symbols: ["Lion", "Weapons", "Trident", "Lotus"]
+            },
+            {
+                name: "Ganesha",
+                title: "Remover of Obstacles",
+                category: "Other",
+                aspect: "Wisdom",
+                icon: "🐘",
+                description: "The elephant-headed god of beginnings, wisdom, and remover of obstacles. Ganesha is invoked at the start of any new venture or ritual.",
+                symbols: ["Elephant Head", "Mouse", "Modak", "Broken Tusk"]
+            },
+            {
+                name: "Hanuman",
+                title: "God of Strength",
+                category: "Avatar",
+                aspect: "Strength",
+                icon: "🐒",
+                description: "The monkey god and devoted servant of Lord Rama. Hanuman symbolizes strength, courage, devotion, and selfless service.",
+                symbols: ["Mace", "Mountain", "Saffron Flag", "Tail"]
+            },
+            {
+                name: "Krishna",
+                title: "Avatar of Vishnu",
+                category: "Avatar",
+                aspect: "Preserver",
+                icon: "🦚",
+                description: "The eighth avatar of Vishnu, known for his role in the Bhagavad Gita and his playful childhood exploits with gopis in Vrindavan.",
+                symbols: ["Flute", "Peacock Feather", "Cow", "Butter Pot"]
+            },
+            {
+                name: "Rama",
+                title: "Maryada Purushottam",
+                category: "Avatar",
+                aspect: "Preserver",
+                icon: "🏹",
+                description: "The seventh avatar of Vishnu and hero of the Ramayana. Rama epitomizes righteousness, duty, and ideal kingship.",
+                symbols: ["Bow & Arrow", "Crown", "Vanara Army", "Pushpaka Vimana"]
+            },
+            {
+                name: "Parvati",
+                title: "Divine Mother",
+                category: "Goddess",
+                aspect: "Strength",
+                icon: "🏔️",
+                description: "The goddess of fertility, love, and devotion. Parvati is the gentle aspect of the Devi and consort of Lord Shiva.",
+                symbols: ["Mountains", "Tiger", "Lotus", "Shiva Linga"]
+            },
+            {
+                name: "Kali",
+                title: "Goddess of Time",
+                category: "Goddess",
+                aspect: "Destroyer",
+                icon: "⚔️",
+                description: "The fierce form of the Divine Mother, destroyer of evil forces. Kali represents the destructive aspect of time and transformation.",
+                symbols: ["Sword", "Skull Garland", "Tongue Out", "Four Arms"]
+            }
+        ];
+
+        // Interesting Facts Data
+        const interestingFacts = [
+            {
+                icon: "🕉️",
+                title: "Ancient Architectural Marvel",
+                description: "The Brihadeeswara Temple in Tamil Nadu, built in 1010 CE, has a 216-foot tall tower made from 130,000 tons of granite, transported 60 km without the use of wheels or pulleys."
+            },
+            {
+                icon: "🏛️",
+                title: "Floating Pillars of Lepakshi",
+                description: "The Veerabhadra Temple in Lepakshi, Andhra Pradesh, has 70 pillars, one of which is famous for not touching the ground - a thin sheet of paper can be passed underneath it!"
+            },
+            {
+                icon: "⛰️",
+                title: "World's Richest Temple",
+                description: "The Padmanabhaswamy Temple in Kerala is estimated to have treasures worth over $20 billion, making it one of the wealthiest religious institutions in the world."
+            },
+            {
+                icon: "🎵",
+                title: "Musical Pillars",
+                description: "The Vittala Temple in Hampi has 56 musical pillars that produce different musical notes when tapped gently, creating a full orchestra without any instruments!"
+            },
+            {
+                icon: "🌅",
+                title: "Shadow That Never Falls",
+                description: "The Konark Sun Temple in Odisha was designed so precisely that the first rays of the sun would fall on the deity's feet and gradually move up to the head throughout the day."
+            },
+            {
+                icon: "🗿",
+                title: "Carved from Single Rock",
+                description: "The Kailasa Temple at Ellora Caves is the world's largest monolithic structure, carved top-down from a single rock. It removed 400,000 tons of rock and took 150 years to complete."
+            },
+            {
+                icon: "🔔",
+                title: "Underwater Temples",
+                description: "There are several submerged ancient temples in India, including the Mahabalipuram temples off the Tamil Nadu coast, visible only when tides recede."
+            },
+            {
+                icon: "🎨",
+                title: "No Adhesive Construction",
+                description: "Many ancient Hindu temples like Brihadeeswarar were built using an interlocking stone technique without any mortar or cement, yet stand strong after 1000+ years."
+            },
+            {
+                icon: "🌟",
+                title: "Astronomical Precision",
+                description: "The Jantar Mantar in Jaipur houses the world's largest stone sundial and astronomical instruments, built with such precision that they can tell time accurate to 2 seconds."
+            },
+            {
+                icon: "🏔️",
+                title: "Highest Altitude Temple",
+                description: "The Tungnath Temple in Uttarakhand is the highest Shiva temple in the world at 3,680 meters (12,073 feet), part of the sacred Panch Kedar pilgrimage."
+            },
+            {
+                icon: "🌊",
+                title: "Magnetic Hill Temple",
+                description: "The Ramanathaswamy Temple in Rameswaram has the longest corridor among all Hindu temples in India, stretching nearly 1,220 meters (4,000 feet) with ornate pillars."
+            },
+            {
+                icon: "💎",
+                title: "Diamond-Studded Deity",
+                description: "The Tirupati Balaji temple receives donations worth over ₹3,000 crores annually, and the deity's eyes are made of rare diamonds called 'Netra Kalyanam'."
+            }
+        ];
+
+        // Regional and State Data
+        const regionalData = [
+            { region: "South India", count: 850000, percentage: 37 },
+            { region: "North India", count: 580000, percentage: 25 },
+            { region: "West India", count: 460000, percentage: 20 },
+            { region: "East India", count: 320000, percentage: 14 },
+            { region: "Central India", count: 90000, percentage: 4 }
+        ];
+
+        const stateData = [
+            { state: "Tamil Nadu", count: 38000 },
+            { state: "Andhra Pradesh", count: 32000 },
+            { state: "Karnataka", count: 34000 },
+            { state: "Kerala", count: 28000 },
+            { state: "Uttar Pradesh", count: 44000 },
+            { state: "Maharashtra", count: 35000 },
+            { state: "Gujarat", count: 25000 },
+            { state: "Rajasthan", count: 22000 }
+        ];
+
+        const religionData = [
+            { religion: "Hindu Temples", count: 2300000, color: "#ff6600" },
+            { religion: "Mosques", count: 300000, color: "#4facfe" },
+            { religion: "Churches", count: 60000, color: "#667eea" },
+            { religion: "Gurudwaras", count: 25000, color: "#ffc107" },
+            { religion: "Buddhist Monasteries", count: 15000, color: "#764ba2" }
+        ];
+
+        // Global variables
+        let selectedChaiAmount = 50;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            displayDeities();
+            displayCharts();
+            displayFacts();
+        });
+
+        function displayDeities() {
+            const grid = document.getElementById('deitiesGrid');
+            grid.innerHTML = hinduDeities.map(deity => `
+                <div class="deity-card" data-category="${deity.category}" data-aspect="${deity.aspect}" data-name="${deity.name.toLowerCase()}">
+                    <div class="chai-corner" onclick="openChaiModal()">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="deity-icon">
+                        <div style="font-size: 5rem;">${deity.icon}</div>
+                    </div>
+                    <div class="deity-content">
+                        <h3 class="deity-name">${deity.name}</h3>
+                        <div class="deity-title">${deity.title}</div>
+                        <p class="deity-description">${deity.description}</p>
+                        <div class="deity-symbols">
+                            <strong>Sacred Symbols:</strong><br>
+                            ${deity.symbols.map(symbol => `<span class="symbol-tag">${symbol}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterDeities() {
+            const searchTerm = document.getElementById('deitySearch').value.toLowerCase();
+            const category = document.getElementById('deityCategory').value;
+            const aspect = document.getElementById('deityAspect').value;
+            
+            const cards = document.querySelectorAll('.deity-card');
+            
+            cards.forEach(card => {
+                const name = card.dataset.name;
+                const cardCategory = card.dataset.category;
+                const cardAspect = card.dataset.aspect;
+                
+                const matchesSearch = name.includes(searchTerm);
+                const matchesCategory = !category || cardCategory === category;
+                const matchesAspect = !aspect || cardAspect === aspect;
+                
+                if (matchesSearch && matchesCategory && matchesAspect) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function displayCharts() {
+            // Regional Chart
+            const regionalChart = document.getElementById('regionalChart');
+            const maxRegional = Math.max(...regionalData.map(d => d.count));
+            regionalChart.innerHTML = regionalData.map(data => `
+                <div class="bar-item">
+                    <div class="bar-label">${data.region}</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: ${(data.count / maxRegional) * 100}%">
+                            ${data.count.toLocaleString()} (${data.percentage}%)
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // State Chart
+            const stateChart = document.getElementById('stateChart');
+            const maxState = Math.max(...stateData.map(d => d.count));
+            stateChart.innerHTML = stateData.map(data => `
+                <div class="bar-item">
+                    <div class="bar-label">${data.state}</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: ${(data.count / maxState) * 100}%">
+                            ${data.count.toLocaleString()}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Religion Chart
+            const religionChart = document.getElementById('religionChart');
+            const maxReligion = Math.max(...religionData.map(d => d.count));
+            religionChart.innerHTML = religionData.map(data => `
+                <div class="bar-item">
+                    <div class="bar-label">${data.religion}</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: ${(data.count / maxReligion) * 100}%; background: ${data.color}">
+                            ${data.count.toLocaleString()}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayFacts() {
+            const grid = document.getElementById('factsGrid');
+            grid.innerHTML = interestingFacts.map(fact => `
+                <div class="fact-card">
+                    <div class="fact-icon">${fact.icon}</div>
+                    <h4 class="fact-title">${fact.title}</h4>
+                    <p class="fact-description">${fact.description}</p>
+                </div>
+            `).join('');
+        }
+
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Deactivate all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Activate selected button
+            event.target.classList.add('active');
+        }
+
+        // Chai functionality
+        function openChaiModal() {
+            document.getElementById('chaiModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function selectChaiAmount(amount, element) {
+            selectedChaiAmount = amount;
+            document.querySelectorAll('.chai-amount').forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('selectedChaiAmount').textContent = amount;
+        }
+
+        function processChaiPayment() {
+            const upiId = '8341346818@ybl';
+            const upiUrl = `upi://pay?pa=${upiId}&pn=Divine%20India&am=${selectedChaiAmount}&cu=INR&tn=Support%20for%20Divine%20India`;
+            
+            try {
+                window.location.href = upiUrl;
+                setTimeout(() => {
+                    closeModal('chaiModal');
+                    alert(`Thank you for your ₹${selectedChaiAmount} ChaiCheers! This keeps Divine India free for everyone.`);
+                }, 1000);
+            } catch (error) {
+                alert(`Please pay ₹${selectedChaiAmount} to UPI ID: ${upiId}`);
+            }
+        }
+
+        // Modal close on outside click
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
